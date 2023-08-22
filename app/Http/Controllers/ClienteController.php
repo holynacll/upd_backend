@@ -10,7 +10,7 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return Cliente::with('municipio.unidade_federativa:id,sigla')
             ->select([
@@ -21,7 +21,7 @@ class ClienteController extends Controller
                 'clientes.sexo',
                 'clientes.mun_id',
             ])
-            ->paginate(4);
+            ->paginate($request->get('perPage', 5));
     }
 
     /**
@@ -32,10 +32,10 @@ class ClienteController extends Controller
         $cliente = new Cliente([
             'nome' => $request->nome,
             'cpf' => $request->cpf,
-            'data_nasc' => $request->data_nasc,
+            'data_nasc' => $request->dataNasc,
             'sexo' => $request->sexo,
             'endereco' => $request->endereco,
-            'mun_id' => $request->mun_id,
+            'mun_id' => $request->munId,
         ]);
         $cliente->save();
         return response()->json($cliente, 201);

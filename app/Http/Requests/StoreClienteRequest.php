@@ -24,10 +24,10 @@ class StoreClienteRequest extends FormRequest
         return [
             'nome' => 'required',
             'cpf' => 'required',
-            'data_nasc' => 'required',
+            'dataNasc' => 'required',
             'sexo' => 'required',
             'endereco' => 'required',
-            'mun_id' => 'required',
+            'munId' => 'required',
         ];
     }
 }

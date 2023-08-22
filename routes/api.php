@@ -23,4 +23,12 @@ Route::get('teste', function () {
     return ['status' => 'ok'];
 });
 
-Route::apiResource('cliente', ClienteController::class);
+Route::apiResource('clientes', ClienteController::class);
+
+Route::get('estados', function () {
+    return \App\Models\UnidadeFederativa::all();
+});
+
+Route::get('cidades/{id}', function ($id) {
+    return \App\Models\Municipio::where('uf_id', $id)->get();
+});
